@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.app.mapper.FirstMapper">
+  <select id="sel" parameterType="String" resultType="String" >
+     select s.SERIAL_NAME
+     from t_brand t,t_car_serial s 
+     where t.brand_name=#{m} and t.brand_code = s.brand_code
+  </select>
+</mapper>

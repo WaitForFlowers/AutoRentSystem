@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.app.mapper.Company_carMapper">
+
+  <select id="selectAllCar" resultType="Company_car">
+     select * from t_company_car 
+  </select>
+  
+  <select id="selectBySelect" resultType="Company_car">  <!--根据点击品牌，车系，车型查询-->
+     select * from t_company_car 
+     <where>
+     <if test="brand!=null">
+     car_brand = #{brand} 
+     </if>
+     
+     <if test="serial!=null">
+    and car_serial = #{serial}
+     </if>
+     
+     <if test="type!=null">
+     and car_type = #{type}
+     </if>
+     </where>
+  </select>
+  
+  	 <select id="findCompany_carById" resultType="Company_car">
+		select * from t_company_car where id=#{id}
+	</select>
+</mapper>

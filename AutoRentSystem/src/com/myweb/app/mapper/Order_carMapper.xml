@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.app.mapper.Order_carMapper">
+    
+ 
+   <insert id="addOrder_car" parameterType="Order_car">
+	insert into t_order_car(id,member_id,lease_id,order_no,car_id,car_name,car_no,car_type,
+	car_brand,car_serial,displacement,tack_address,order_start_time,return_address,
+	order_end_time,normal_price,holiday_price,special_price,car_pic,gear,seating)
+	values(#{id},#{member_id},#{lease_id},#{order_no},#{car_id},#{car_name},#{car_no},
+	#{car_type},#{car_brand},#{car_serial},#{displacement},#{tack_address},
+	#{order_start_time},#{return_address},#{order_end_time},#{normal_price},
+	#{holiday_price},#{special_price},#{car_pic},#{gear},#{seating})
+	</insert>
+</mapper>

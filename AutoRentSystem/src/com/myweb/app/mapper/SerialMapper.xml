@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.app.mapper.SerialMapper">
+
+ <select id="selectSName" resultType="String">
+     select serial_name from t_car_serial
+   </select>
+   
+    <select id= "selectSCodeByName" resultType="String" parameterType="String">
+   select serial_code from t_car_serial where serial_name=#{serial}
+   </select>
+</mapper>

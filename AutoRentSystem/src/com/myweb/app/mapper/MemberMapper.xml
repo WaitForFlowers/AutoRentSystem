@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.app.mapper.MemberMapper">
+	<!-- 查询用户全部信息 -->
+	<select id="findAll" resultType="Member"  >
+		select * from t_member
+	</select>
+	<select id="findByPage" resultType="Member" parameterType="int" >
+		select * from t_member limit #{page},3;
+	</select>
+	<insert id="addMember" parameterType="Member" keyProperty="id" useGeneratedKeys="true">
+     insert into t_member values ( #{id},#{member_name},#{login_name},#{member_pwd},#{gender},#{nick_name},#{id_card},#{mobile_phone},#{email}
+       ,#{icon},#{birth_day},#{province},#{city},#{area},#{address},#{lease_id},#{member_type},#{CREATE_DATE},#{member_state},
+       #{push_user_id},#{push_channel_id},#{mobile_type},#{level},#{referrer_id},#{THIRDUSERID},#{THIRDTOKEN},#{THIRDTYPE})
+   </insert>
+  <!--   -->
+   <update id="updateMember" parameterType = "Member">
+	    update t_member set id=#{id},member_name=#{member_name},login_name=#{login_name},member_pwd=#{member_pwd},gender=#{gender},nick_name=#{nick_name},id_card=#{id_card},mobile_phone=#{mobile_phone},email=#{email}
+       ,icon=#{icon},birth_day=#{birth_day},province=#{province},city=#{city},area=#{area},address=#{address},lease_id=#{lease_id},member_type=#{member_type},CREATE_DATE=#{CREATE_DATE},member_state=#{member_state},
+       push_user_id=#{push_user_id},push_channel_id=#{push_channel_id},mobile_type=#{mobile_type},level=#{level},referrer_id=#{referrer_id},THIRDUSERID=#{THIRDUSERID},THIRDTOKEN=#{THIRDTOKEN},THIRDTYPE=#{THIRDTYPE}
+        where id=#{id}
+	</update>
+	
+   <select id="showMemberById" parameterType="String" resultType = "Member">
+       select * from t_member where id=#{id}
+   </select>
+   
+   <delete id = "deleteById" parameterType = "String">
+      delete from t_member where id=#{id}
+   </delete>
+   
+   <select id="searchBox" parameterType = "String" resultType="Member">
+   		select * from t_member where id=#{condition} or login_name=#{condition} or mobile_phone=#{condition} or email=#{condition}
+   </select>
+   <select id="findByType" parameterType = "String" resultType="Member">
+   		select * from t_member where level=#{type}
+   </select>
+   
+   <select id = "findUser"  resultType = "int">
+        select count(*) from t_member where login_name =#{username} and member_pwd =#{password}
+   </select>
+   
+
+     <insert id="registe"  keyProperty="id" useGeneratedKeys="true" >
+  		INSERT INTO t_member 
+  		(id,member_name,login_name,member_pwd,gender,mobile_phone) 
+  		VALUES (#{id},#{register},#{mobile_number},#{register_password},#{sex},#{mobile_number})
+  </insert>
+
+</mapper>

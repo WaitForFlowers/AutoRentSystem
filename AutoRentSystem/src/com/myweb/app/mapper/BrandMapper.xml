@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.app.mapper.BrandMapper">
+
+	<insert id="addBrand" parameterType="Brand">
+		insert into t_brand values(#{id},#{brand_code},#{brand_name},
+		#{brand_pic},#{brand_url},#{create_date},#{brand_py}
+		)	
+	</insert>
+	
+	<update id="updateBrand" parameterType="Brand">
+	   update t_brand set brand_code=#{brand_code},brand_name=#{brand_name},
+	    brand_pic=#{brand_pic},brand_url=#{brand_url} where id=#{id}	
+	</update>
+	
+	 <delete id="deleteBrandById">
+      delete from t_brand where id=#{id}
+     </delete>
+   
+   <select id="showBrandById" resultType="Brand">
+       select id,brand_code,brand_name,brand_pic,brand_url,create_date,brand_py from t_brand where id=#{id}
+   </select>
+   <select id="showBrandBycona" parameterType="String" resultType="Brand">
+       select id,brand_code,brand_name,brand_pic,brand_url,create_date,brand_py from t_brand where brand_code=#{para} or brand_name=#{para}
+   </select>
+  
+   <select id="showAllBrand" resultType="Brand">
+     select id,brand_code,brand_name,brand_pic,brand_url,create_date,brand_py from t_brand
+   </select>
+   
+   <select id= "selectBCodeByName" resultType="String" parameterType="String">
+   select brand_code from t_brand where brand_name=#{brand}
+   </select>
+   
+   
+</mapper>

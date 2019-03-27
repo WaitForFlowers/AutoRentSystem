@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.app.mapper.LeaseMapper">
+
+<!-- <resultMap type="com.myweb.app.domain.Area" id="addressMap">
+  	<id column="id" property="id"/>
+    <result column="t_no" property="t_no"/>
+    <result column="name" property="NAME"/>
+  	<collection property="leases" ofType="com.myweb.app.domain.Lease">
+  		<id column="id" property="id"/>
+        <result column="lease_id" property="lease_id"/>
+        <result column="lease_city" property="lease_city"/>
+  	</collection>  	
+  </resultMap> -->
+  
+  <select id="selectCity" resultType="Area">
+    select distinct s.t_no,s.NAME  from t_lease_address l,t_system_area s where l.lease_city=s.t_no and lease_id=#{leaseid}
+  </select>
+  <select id="selectLease_address" parameterType="map" resultType="String">
+    select distinct lease_address from t_lease_address where lease_id=#{leaseid} and lease_city=#{city}
+  </select>
+ 
+</mapper>
